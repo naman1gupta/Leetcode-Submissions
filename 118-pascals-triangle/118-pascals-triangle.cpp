@@ -20,9 +20,9 @@ const ll nn=1e5 + 1;
 
 class Solution {
 public:
-    vector<vector<int>> generate(ll numRows) {
+    vector<vector<int>> generate(ll n) {
         FAST;
-        ll n=numRows;
+        // ll n=numRows;
         vector<vector<int>> a(n);            
         for(ll i = 0; i < n; i++) {
             a[i] = vector<int>(i+1,1);        
