@@ -19,6 +19,7 @@ const ll nn=1e5 + 1;
 class Solution {
 public:
     int superPow(int a, vector<int>& b) {
+        FAST;
         ll n = b.size();
         ll ans = 1;
         ll aa = a % 1337;
