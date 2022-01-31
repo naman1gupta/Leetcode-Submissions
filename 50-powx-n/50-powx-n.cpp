@@ -77,9 +77,9 @@ public:
         //     ans*=anss;
         //     // cout<<"hue"<<' ';
         // }    
-        if(n<0){
-            ans=(1.0)/(ans*1.0);
-        }
+        // if(n<0){
+        //     ans=(1.0)/(ans*1.0);
+        // }
 
         return ans;
     }
