@@ -36,7 +36,7 @@ public:
         // ll n=candidates.size();
         vector<vector<int>>res;
         vector<int>combination;
-        sort(candidates.begin(), candidates.end());
+        SORT(candidates);
         combinationSum(candidates, target, res, combination, 0);
         return res;
     }
