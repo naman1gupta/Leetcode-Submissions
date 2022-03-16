@@ -42,7 +42,7 @@ public:
                 i--;
             }
             if(i >= 0){
-                str.push_back('a'+i);
+                str+=('a'+i);
                 a[i]--;
                 prevCount = prevIdx==i ? prevCount+1 : 1;
                 prevIdx = i;
