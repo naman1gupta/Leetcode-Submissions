@@ -1,34 +1,29 @@
 class Solution {
     typedef long long ll;
 public:
-    vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long success) {
-        const ll N=1e5;
-        // ll a[N+10]={0};
-        unordered_map<ll,ll>a(N);
-        for(ll i=1;i<=N;i++){
-            a[i]=0;
-        }
-        vector<int>v;
-        for(ll i=0;i<potions.size();i++){
-            a[potions[i]]++;
-        }
-        for(ll i=N;i>=0;i--){
-            // if(a[i]==0){
-                a[i]+=a[i+1];
-            // }
-        }
-        long double cnt=0;
-        for(ll i=0;i<spells.size();i++){
-            cnt=((success*1.0)/(spells[i]*1.0));
-            if(success%spells[i]!=0){
-                cnt++;
+    vector<int> successfulPairs(vector<int>& s, vector<int>& p, long long suc) {
+        vector<int> v(s.size(),0);
+        sort(p.begin(),p.end());
+        
+        for(int i=0;i<s.size();i++)
+        {
+            int h=p.size()-1;
+            int l=0;
+            int mid;
+            while(l<=h)
+            {
+                mid = l + (h-l)/2;
+                
+                if((long long int)s[i]*(long long int)p[mid] >= suc)
+                    h = mid-1;
+                
+                else
+                    l = mid+1;
             }
-            ll num=cnt;
-            // cout<<a[num];
-            num=a[num];
-            v.push_back(num);
             
+            v[i] = p.size()-1-h;
         }
+        
         return v;
     }
 };
