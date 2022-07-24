@@ -1,36 +1,30 @@
 class Solution {
 public:
     long long countExcellentPairs(vector<int>& nums, int k) {
-        long long ans=0 , size=0  ;
-        unordered_map<int,int> m;
-        vector<long long> v;
-        for(auto it : nums)
-        {
-           if(m[it]==0)
-           {
-               long long t=__builtin_popcount(it);
-               if(t<k)
-               v.emplace_back(t);
-               size++;
-           }
-            m[it]=1;
+        // For any number in nums, we need another number having
+        // atleast (k - __builtin_popcount(num)) set bits in it.
+        
+        int n = nums.size();
+        unordered_set<int> cnt[31];
+        
+        for(int num : nums) {
+            int bits = __builtin_popcount(num);
+            cnt[bits].insert(num);
         }
-        sort(v.begin(),v.end());
-        int n=v.size();
-        for(int i=0;i<n;i++)
-        {
-            long long x= k-v[i];
-            auto add =lower_bound(v.begin(), v.end(), x);
-            long long y= (add-v.begin());
-            ans+=(n-y);
+        
+        long long ans = 0;
+        unordered_set<int> vis;
+        for(int num : nums) {
+            if(vis.count(num)) continue;
+            
+            int need = max(0, k - __builtin_popcount(num));
+            for(int bits = need; bits < 31; bits++) {
+                ans = ans + (long long)cnt[bits].size();
+            }
+            
+            vis.insert(num);
         }
-       // cout<<size<<" "<<n;
-        ans+= ((size-n)*n*2);
-        size=size-n;
-        ans+= size*(size-1);
-        ans+= size;
         
         return ans;
-        
     }
 };
